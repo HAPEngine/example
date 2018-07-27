@@ -29,7 +29,7 @@
 #include "hap_example.h"
 
 
-void* create(HAPEngine *engine) {
+void* create(HAPEngine *engine, HAPConfigurationSection *configuration) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 
 	return (void*) malloc(sizeof(exampleState));

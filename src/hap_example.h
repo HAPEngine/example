@@ -6,7 +6,7 @@ typedef struct {
 } exampleState;
 
 
-extern void* create(HAPEngine *engine);
+extern void* create(HAPEngine *engine, HAPConfigurationSection *configuration);
 extern void load(HAPEngine *engine, exampleState *state, char *identifier);
 extern HAPTime update(HAPEngine *engine, exampleState *state);
 void render(HAPEngine *engine, void *state);
