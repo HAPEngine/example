@@ -53,6 +53,15 @@ HAPTime update(HAPEngine *engine, exampleState *state) {
 }
 
 
+void render(HAPEngine *engine, void *state) {
+	// This is a special hook which is called for each rendered frame. It
+	// is optional and should NOT be provided for plugins don't render
+	// any video.
+
+	(void)engine;      // Mark variable as used to avoid compiler warnings
+	(void)state;       // Mark variable as used to avoid compiler warnings
+}
+
 void unload(HAPEngine *engine, exampleState *state) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 	(void)state;       // Mark variable as used to avoid compiler warnings
