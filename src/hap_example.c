@@ -7,15 +7,6 @@
  *
  */
 
- /** Modifies the linker so that it uses proper symbol names in MSVC. **/
-#ifdef OS_Windows
-#pragma comment(linker, "/EXPORT:create=create")
-#pragma comment(linker, "/EXPORT:load=load")
-#pragma comment(linker, "/EXPORT:update=update")
-#pragma comment(linker, "/EXPORT:unload=unload")
-#pragma comment(linker, "/EXPORT:destroy=destroy")
-#endif
-
 #ifndef OS_Windows
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-parameter"
@@ -29,14 +20,14 @@
 #include "hap_example.h"
 
 
-void* create(HAPEngine *engine, HAPConfigurationSection *configuration) {
+HAP_MODULE_EXPORT void* create(HAPEngine *engine, HAPConfigurationSection *configuration) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 
 	return (void*) malloc(sizeof(exampleState));
 }
 
 
-void load(HAPEngine *engine, exampleState *state, char *identifier) {
+HAP_MODULE_EXPORT void load(HAPEngine *engine, exampleState *state, char *identifier) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 	(void)identifier;  // Mark variable as used to avoid compiler warnings
 
@@ -44,7 +35,7 @@ void load(HAPEngine *engine, exampleState *state, char *identifier) {
 }
 
 
-HAPTime update(HAPEngine *engine, exampleState *state) {
+HAP_MODULE_EXPORT HAPTime update(HAPEngine *engine, exampleState *state) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 	(void)state;       // Mark variable as used to avoid compiler warnings
 
@@ -53,7 +44,7 @@ HAPTime update(HAPEngine *engine, exampleState *state) {
 }
 
 
-void render(HAPEngine *engine, void *state) {
+HAP_MODULE_EXPORT void render(HAPEngine *engine, void *state) {
 	// This is a special hook which is called for each rendered frame. It
 	// is optional and should NOT be provided for plugins don't render
 	// any video.
@@ -62,13 +53,13 @@ void render(HAPEngine *engine, void *state) {
 	(void)state;       // Mark variable as used to avoid compiler warnings
 }
 
-void unload(HAPEngine *engine, exampleState *state) {
+HAP_MODULE_EXPORT void unload(HAPEngine *engine, exampleState *state) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 	(void)state;       // Mark variable as used to avoid compiler warnings
 }
 
 
-void destroy(HAPEngine *engine, exampleState *state) {
+HAP_MODULE_EXPORT void destroy(HAPEngine *engine, exampleState *state) {
 	(void)engine;      // Mark variable as used to avoid compiler warnings
 	(void)state;       // Mark variable as used to avoid compiler warnings
 }
